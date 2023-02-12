@@ -14,7 +14,8 @@ EXPOSE $PORT
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir urllib3==1.26.5 -U
+    pip install --no-cache-dir urllib3==1.26.14 -U && \
+    pip install --no-cache-dir chardet==5.1.0 -U
 
 COPY . .
 
