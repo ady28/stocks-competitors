@@ -11,6 +11,9 @@ pipeline {
         DOCKERHUB_USER = 'ady28'
         IMAGE_NAME = 'stocks-competitors'
         IMAGE_VERSION = ''
+        KUBERNETES_API = 'https://proxtest1:6443'
+        STOCKS_APP_NAMESPACE = 'stocks-app'
+        STOCKS_APP_DEPLOYMENT = 'stocks-app-competitors'
     }
     stages {
         stage('Static code analysis') {
@@ -78,7 +81,10 @@ pipeline {
         }
         stage('Deploy Qual Infrastructure') {
             steps {
-                build job: 'stocks-app-qual-deploy'
+                echo "Restarting the deployment"
+                withKubeConfig([credentialsId: 'local_kube_stocksapp', serverUrl: "${env.KUBERNETES_API}", namespace: "${env.STOCKS_APP_NAMESPACE}"]) {
+                    sh "kubectl rollout restart deployment ${env.STOCKS_APP_DEPLOYMENT}"
+                }
             }
         }
     }

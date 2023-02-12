@@ -1,4 +1,4 @@
-FROM python:3.8.15-alpine3.16
+FROM python:3.11.2-alpine3.17
 
 RUN apk add --no-cache expat=2.5.0-r0
 
