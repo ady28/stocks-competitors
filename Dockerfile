@@ -16,7 +16,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt && \
     pip install --no-cache-dir urllib3==1.26.14 -U && \
     pip install --no-cache-dir chardet==5.1.0 -U && \
-    pip install --no-cache-dir releases==2.28.2 -U
+    pip install --no-cache-dir requests==2.28.2 -U
 
 COPY . .
 
