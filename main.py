@@ -9,15 +9,15 @@ stocks_env = env_data.get_environment()
 environ_data = env_data.get_env_data(stocks_env)
 database_data = env_data.get_db_data(stocks_env)
 
-@app.route('/', methods=["GET"])
-def root():
+@app.route('/health', methods=["GET"])
+def health():
     ret = {
         "success" : True,
         "message" : "OK"
     }
 
     return jsonify(ret)
-    
+
 @app.route('/competitors', methods=["GET"])
 def competitors():
     ticker = request.args.get('ticker').upper()
